@@ -4,8 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjektBackend.Shared.Models;
 
-namespace ProjektBackendLab.Core.Entities
+namespace ProjektBackend.Core.Entities
 {
     public class Orders
     {

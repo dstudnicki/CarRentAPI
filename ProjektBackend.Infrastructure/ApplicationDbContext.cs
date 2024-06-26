@@ -1,14 +1,15 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using ProjektBackendLab.Core.Entities;
+using ProjektBackend.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjektBackend.Shared.Models;
 
-namespace ProjektBackendLab.Infrastructure.Data
+namespace ProjektBackend.Infrastructure
 {
     public class ApplicationDBContext : IdentityDbContext<ApplicationUser>
     {

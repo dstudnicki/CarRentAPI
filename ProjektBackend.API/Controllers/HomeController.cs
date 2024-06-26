@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using ProjektBackendLab.Core.Entities;
-using ProjektBackendLab.Core.Interfaces;
-using ProjektBackendLab.Infrastructure.Data;
+using ProjektBackend.Core.Entities;
+using ProjektBackend.Core.Interfaces;
+using ProjektBackend.Shared.Models;
 
 namespace ProjektBackendLab.API.Controllers
 {

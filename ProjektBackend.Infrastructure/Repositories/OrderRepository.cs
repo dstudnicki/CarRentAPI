@@ -1,13 +1,12 @@
-﻿using ProjektBackendLab.Core.Entities;
-using ProjektBackendLab.Core.Interfaces;
-using ProjektBackendLab.Infrastructure.Data;
+﻿using ProjektBackend.Core.Entities;
+using ProjektBackend.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjektBackendLab.Infrastructure.Repositories
+namespace ProjektBackend.Infrastructure.Repositories
 {
     public class OrderRepository : IOrderRepository
     {

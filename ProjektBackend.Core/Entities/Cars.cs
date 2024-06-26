@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjektBackendLab.Core.Entities
+namespace ProjektBackend.Core.Entities
 {
     public class Cars
     {

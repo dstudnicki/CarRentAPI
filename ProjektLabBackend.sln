@@ -3,13 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34322.80
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjektBackendLab.Core", "ProjektBackend.Core\ProjektBackendLab.Core.csproj", "{404BA291-317C-45F1-B05D-35FEA69772CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjektBackend.Core", "ProjektBackend.Core\ProjektBackend.Core.csproj", "{404BA291-317C-45F1-B05D-35FEA69772CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjektBackendLab.API", "ProjektBackend.API\ProjektBackendLab.API.csproj", "{00963980-8810-4E79-9CE6-DAFCCD96127F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjektBackend.API", "ProjektBackend.API\ProjektBackend.API.csproj", "{00963980-8810-4E79-9CE6-DAFCCD96127F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F0389056-2E6B-45A2-AA08-DE0860636DF0} = {F0389056-2E6B-45A2-AA08-DE0860636DF0}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjektBackendLab.Application", "ProjektBackend.Application\ProjektBackendLab.Application.csproj", "{120525F1-9A67-4D1E-A084-E5FCD578A3FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjektBackend.Application", "ProjektBackend.Application\ProjektBackend.Application.csproj", "{120525F1-9A67-4D1E-A084-E5FCD578A3FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjektBackendLab.Infrastructure", "ProjektBackend.Infrastructure\ProjektBackendLab.Infrastructure.csproj", "{F0389056-2E6B-45A2-AA08-DE0860636DF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjektBackend.Infrastructure", "ProjektBackend.Infrastructure\ProjektBackend.Infrastructure.csproj", "{F0389056-2E6B-45A2-AA08-DE0860636DF0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjektBackend.Shared", "ProjektBackendLab.Shared\ProjektBackend.Shared.csproj", "{FC22D38F-2E51-4466-9E9C-F9568DDD0F63}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +38,10 @@ Global
 		{F0389056-2E6B-45A2-AA08-DE0860636DF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F0389056-2E6B-45A2-AA08-DE0860636DF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F0389056-2E6B-45A2-AA08-DE0860636DF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC22D38F-2E51-4466-9E9C-F9568DDD0F63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC22D38F-2E51-4466-9E9C-F9568DDD0F63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC22D38F-2E51-4466-9E9C-F9568DDD0F63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC22D38F-2E51-4466-9E9C-F9568DDD0F63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
