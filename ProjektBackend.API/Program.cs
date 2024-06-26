@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using ProjektBackend.Application.Services;
 using ProjektBackend.Core.Interfaces;
 using ProjektBackend.Infrastructure;
 using ProjektBackend.Infrastructure.Repositories;
@@ -28,6 +29,11 @@ builder.Services.AddScoped<ICarRepository, CarRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+
+builder.Services.AddScoped<CarService>();
+builder.Services.AddScoped<CategoryService>();
+builder.Services.AddScoped<ClientService>();
+builder.Services.AddScoped<OrderService>();
 
 
 var app = builder.Build();
