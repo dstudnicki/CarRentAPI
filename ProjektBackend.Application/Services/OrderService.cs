@@ -5,14 +5,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjektBackend.Core.Interfaces;
+
 
 namespace ProjektBackend.Application.Services
 {
     public class OrderService
     {
-        private readonly OrderRepository _orderRepository;
+        private readonly IOrderRepository _orderRepository;
 
-        public OrderService(OrderRepository orderRepository)
+        public OrderService(IOrderRepository orderRepository)
         {
             _orderRepository = orderRepository;
         }

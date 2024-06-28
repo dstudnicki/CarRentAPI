@@ -19,11 +19,7 @@ namespace ProjektBackend.Core.Entities
         public Clients? Client { get; set; }
         public int CarId { get; set; }
         public Cars? Car { get; set; }
-        [Required(ErrorMessage = "Please enter a pickup date")]
-        [DataType(DataType.Date, ErrorMessage = "Invalid date format")]
         public DateTime? PickupDate { get; set; }
-        [Required(ErrorMessage = "Please enter return date")]
-        [DataType(DataType.Date, ErrorMessage = "Invalid date format")]
         public DateTime ReturnDate { get; set; }
     }
 }

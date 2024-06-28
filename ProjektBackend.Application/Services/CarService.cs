@@ -12,9 +12,9 @@ namespace ProjektBackend.Application.Services
 {
     public class CarService
     {
-        private readonly CarRepository _carRepository;
+        private readonly ICarRepository _carRepository;
 
-        public CarService(CarRepository carRepository)
+        public CarService(ICarRepository carRepository)
         {
             _carRepository = carRepository;
         }

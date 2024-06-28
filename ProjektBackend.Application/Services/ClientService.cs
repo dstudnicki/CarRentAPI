@@ -5,14 +5,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjektBackend.Core.Interfaces;
 
 namespace ProjektBackend.Application.Services
 {
     public class ClientService
     {
-        private readonly ClientRepository _clientRepository;
+        private readonly IClientRepository _clientRepository;
 
-        public ClientService(ClientRepository clientRepository)
+        public ClientService(IClientRepository clientRepository)
         {
             _clientRepository = clientRepository;
         }

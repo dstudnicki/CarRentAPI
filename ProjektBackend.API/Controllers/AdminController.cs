@@ -7,6 +7,7 @@ namespace ProjektBackend.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize(Roles = "Administrator")]
     public class AdminController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -18,8 +19,7 @@ namespace ProjektBackend.API.Controllers
             _roleManager = roleManager;
         }
 
-        [HttpPost("CreateAdminUser")]
-        [Authorize(Roles = "Administrator")]
+        [HttpPost("create-admin")]
         public async Task<IActionResult> CreateAdminUser()
         {
             string roleName = "Administrator";
@@ -30,23 +30,38 @@ namespace ProjektBackend.API.Controllers
             if (!roleExist)
             {
                 roleResult = await _roleManager.CreateAsync(new IdentityRole(roleName));
+                if (!roleResult.Succeeded)
+                {
+                    return BadRequest(roleResult.Errors);
+                }
             }
 
             var user = await _userManager.FindByEmailAsync("admin@admin.pl");
 
             if (user == null)
             {
-                user = new ApplicationUser()
+                user = new ApplicationUser
                 {
                     UserName = "admin@admin.pl",
                     Email = "admin@admin.pl",
+                    FirstName = "Admin",
+                    LastName = "User"
                 };
-                await _userManager.CreateAsync(user, "Admin123@");
+                var createUserResult = await _userManager.CreateAsync(user, "Admin123@");
+
+                if (!createUserResult.Succeeded)
+                {
+                    return BadRequest(createUserResult.Errors);
+                }
             }
 
             if (!await _userManager.IsInRoleAsync(user, roleName))
             {
-                await _userManager.AddToRoleAsync(user, roleName);
+                var addToRoleResult = await _userManager.AddToRoleAsync(user, roleName);
+                if (!addToRoleResult.Succeeded)
+                {
+                    return BadRequest(addToRoleResult.Errors);
+                }
             }
 
             return Ok();
