@@ -2,6 +2,30 @@
 
 ProjektBackend to aplikacja API do zarządzania wypożyczalnią samochodów, zbudowana w architekturze Onion Architecture przy użyciu ASP.NET Core. Aplikacja korzysta z Identity, bazy danych SQL oraz JWT (JSON Web Token) do uwierzytelniania.
 
+## Wymagane paczki NuGet
+- Microsoft.AspNetCore.Authentication.JwtBearer
+- Microsoft.AspNetCore.Identity.EntityFrameworkCore
+- Microsoft.AspNetCore.Identity.UI
+- Microsoft.EntityFrameworkCore
+- Microsoft.EntityFrameworkCore.Design
+- Microsoft.EntityFrameworkCore.SqlServer
+- Microsoft.EntityFrameworkCore.Tools
+  Należy zainstalować je dla całego projektu
+
+## Migracja bazy danych
+Aby przeprowadzić migrację bazy danych należy wybrać startup project jako ProjektBackend.Infrastrcture w konsoli Package manager console, a następnie wpisać add-migration Init oraz update-database. Należy również usunąć folder migrations jeśli istnieje.
+
+## Łańcuch połączenia bazy danych
+```json
+  {
+    "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=.\\LOCALHOST;Database=Projekt;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=true"
+  }
+  }
+```
+Należy zmienić nazwę w polu "Server" adekwatnie dla swojej maszyny np. localhost
+
 ## Struktura Projektu
 
 ### Warstwa API
