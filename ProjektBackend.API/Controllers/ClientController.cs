@@ -16,6 +16,26 @@ namespace ProjektBackend.API.Controllers
             _clientService = clientService;
         }
 
+        [HttpGet]
+        [Authorize(Roles = "Administrator,User")]
+        public IActionResult GetAll()
+        {
+            var clients = _clientService.GetAllClients();
+            return Ok(clients);
+        }
+
+        [HttpGet("{id}")]
+        [Authorize(Roles = "Administrator,User")]
+        public IActionResult GetDetails(int id)
+        {
+            var client = _clientService.GetClientById(id);
+            if (client == null)
+            {
+                return NotFound();
+            }
+            return Ok(client);
+        }
+
         [HttpPost]
         [Authorize(Roles = "Administrator")]
         public IActionResult Create(Clients client)

@@ -17,6 +17,16 @@ namespace ProjektBackend.Infrastructure.Repositories
             _context = context;
         }
 
+        public IEnumerable<Orders> GetAllOrders()
+        {
+            return _context.Orders.ToList();
+        }
+
+        public Orders GetOrderById(int orderId)
+        {
+            return _context.Orders.Find(orderId);
+        }
+
         public void AddOrder(Orders order)
         {
             _context.Orders.Add(order);

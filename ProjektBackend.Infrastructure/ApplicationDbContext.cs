@@ -61,9 +61,6 @@ namespace ProjektBackend.Infrastructure
             {
                 builder.Property(x => x.FirstName).HasMaxLength(255);
                 builder.Property(x => x.LastName).HasMaxLength(255);
-                builder.Property(x => x.Street).HasMaxLength(255);
-                builder.Property(x => x.Postcode).HasMaxLength(255);
-                builder.Property(x => x.City).HasMaxLength(255);
             }
         }
     }

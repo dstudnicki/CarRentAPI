@@ -16,6 +16,26 @@ namespace ProjektBackend.API.Controllers
             _orderService = orderService;
         }
 
+        [HttpGet]
+        [Authorize(Roles = "Administrator,User")]
+        public IActionResult GetAll()
+        {
+            var orders = _orderService.GetAllOrders();
+            return Ok(orders);
+        }
+
+        [HttpGet("{id}")]
+        [Authorize(Roles = "Administrator,User")]
+        public IActionResult GetDetails(int id)
+        {
+            var order = _orderService.GetOrderById(id);
+            if (order == null)
+            {
+                return NotFound();
+            }
+            return Ok(order);
+        }
+
         [HttpPost]
         [Authorize(Roles = "Administrator")]
         public IActionResult Create(Orders order)

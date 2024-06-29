@@ -17,6 +17,16 @@ namespace ProjektBackend.Infrastructure.Repositories
             _context = context;
         }
 
+        public IEnumerable<Clients> GetAllClients()
+        {
+            return _context.Clients.ToList();
+        }
+
+        public Clients GetClientById(int clientId)
+        {
+            return _context.Clients.Find(clientId);
+        }
+
         public void AddClient(Clients client)
         {
             _context.Clients.Add(client);

@@ -80,10 +80,6 @@ namespace ProjektBackend.Infrastructure
                 {
                     FirstName = "Jan",
                     LastName = "Kowal",
-                    Street = "Słoneczna 16",
-                    PostCode = "30-611",
-                    City = "Kraków",
-                    PhoneNumber = "565565565",
                     Email = "jankowal@gmail.com",
                 });
                 context.SaveChanges();
@@ -97,7 +93,7 @@ namespace ProjektBackend.Infrastructure
                 context.Orders.Add(new Orders
                 {
                     OrderDate = DateTime.Now,
-                    UserId = client.ClientId,
+                    UserId = null,
                     ClientId = client.ClientId,
                     CarId = car.CarId,
                     PickupDate = DateTime.Now.AddDays(1),

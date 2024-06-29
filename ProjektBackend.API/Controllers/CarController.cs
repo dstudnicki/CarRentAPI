@@ -81,7 +81,6 @@ namespace ProjektBackend.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Administrator")]
         public IActionResult Delete(int id)
         {
             var car = _carService.GetCarById(id);

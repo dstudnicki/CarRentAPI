@@ -9,6 +9,8 @@ namespace ProjektBackend.Core.Interfaces
 {
     public interface IOrderRepository
     {
+        IEnumerable<Orders> GetAllOrders();
+        Orders GetOrderById(int orderId);
         void AddOrder(Orders order);
     }
 }

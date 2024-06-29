@@ -34,9 +34,6 @@ namespace ProjektBackend.API.Controllers
                     Email = model.Email,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    Street = model.Street,
-                    Postcode = model.Postcode,
-                    City = model.City
                 };
 
                 var result = await _userManager.CreateAsync(user, model.Password);
@@ -76,14 +73,19 @@ namespace ProjektBackend.API.Controllers
             return BadRequest(ModelState);
         }
 
-        private string GenerateJwtToken(ApplicationUser user)
+        private async Task<string> GenerateJwtToken(ApplicationUser user)
         {
-            var claims = new[]
-            {
+            var userRoles = await _userManager.GetRolesAsync(user);
+
+            var claims = new List<Claim>
+    {
         new Claim(JwtRegisteredClaimNames.Sub, user.Email),
         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
         new Claim(ClaimTypes.NameIdentifier, user.Id)
     };
+
+            // Add roles to claims
+            claims.AddRange(userRoles.Select(role => new Claim(ClaimTypes.Role, role)));
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -97,5 +99,6 @@ namespace ProjektBackend.API.Controllers
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+
     }
 }

@@ -12,12 +12,10 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Add DbContext
 builder.Services.AddDbContext<ApplicationDBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
         b => b.MigrationsAssembly("ProjektBackend.Infrastructure")));
@@ -39,19 +37,17 @@ builder.Services.AddAuthentication(options =>
             ValidateAudience = true,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-            ValidIssuer = builder.Configuration["Issuer"],
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
             ValidAudience = builder.Configuration["Jwt:Audience"],
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
         };
     });
 
-// Register repositories
 builder.Services.AddScoped<ICarRepository, CarRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 
-// Register application services
 builder.Services.AddScoped<CarService>();
 builder.Services.AddScoped<CategoryService>();
 builder.Services.AddScoped<ClientService>();
@@ -59,7 +55,6 @@ builder.Services.AddScoped<OrderService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -75,7 +70,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-// Run the seeder
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;

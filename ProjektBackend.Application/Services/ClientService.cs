@@ -18,6 +18,16 @@ namespace ProjektBackend.Application.Services
             _clientRepository = clientRepository;
         }
 
+        public IEnumerable<Clients> GetAllClients()
+        {
+            return _clientRepository.GetAllClients();
+        }
+
+        public Clients GetClientById(int clientId)
+        {
+            return _clientRepository.GetClientById(clientId);
+        }
+
         public void AddClient(Clients client)
         {
             _clientRepository.AddClient(client);

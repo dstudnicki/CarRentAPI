@@ -9,6 +9,8 @@ namespace ProjektBackend.Core.Interfaces
 {
     public interface IClientRepository
     {
+        IEnumerable<Clients> GetAllClients();
+        Clients GetClientById(int clientId);
         void AddClient(Clients client);
     }
 }

@@ -19,6 +19,16 @@ namespace ProjektBackend.Application.Services
             _orderRepository = orderRepository;
         }
 
+        public IEnumerable<Orders> GetAllOrders()
+        {
+            return _orderRepository.GetAllOrders();
+        }
+
+        public Orders GetOrderById(int orderId)
+        {
+            return _orderRepository.GetOrderById(orderId);
+        }
+
         public void AddOrder(Orders order)
         {
             _orderRepository.AddOrder(order);
