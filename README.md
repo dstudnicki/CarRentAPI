@@ -1,6 +1,6 @@
-# ProjektBackend - Wypożyczalnia Samochodów API
+Wypożyczalnia Samochodów API
 
-ProjektBackend to aplikacja API do zarządzania wypożyczalnią samochodów, zbudowana w architekturze Onion Architecture przy użyciu ASP.NET Core. Aplikacja korzysta z Identity, bazy danych SQL oraz JWT (JSON Web Token) do uwierzytelniania.
+Wypożyczalnia Samochodów API to aplikacja API do zarządzania wypożyczalnią samochodów, zbudowana w architekturze Onion Architecture przy użyciu ASP.NET Core. Aplikacja korzysta z Identity, bazy danych SQL oraz JWT (JSON Web Token) do uwierzytelniania.
 
 ## Wymagane paczki NuGet
 - Microsoft.AspNetCore.Authentication.JwtBearer
