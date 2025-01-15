@@ -145,7 +145,7 @@ Zawiera modele wykorzystywane w aplikacji.
 
 1. Sklonuj repozytorium:
     ```bash
-    git clone https://github.com/your-repo/ProjektBackend.git
+   https://github.com/dstudnicki/CarRentAPI.git
     ```
 
 2. Przejdź do katalogu projektu:
