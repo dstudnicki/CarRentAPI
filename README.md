@@ -1,4 +1,4 @@
-Wypożyczalnia Samochodów API
+## Wypożyczalnia Samochodów API
 
 Wypożyczalnia Samochodów API to aplikacja API do zarządzania wypożyczalnią samochodów, zbudowana w architekturze Onion Architecture przy użyciu ASP.NET Core. Aplikacja korzysta z Identity, bazy danych SQL oraz JWT (JSON Web Token) do uwierzytelniania.
 
