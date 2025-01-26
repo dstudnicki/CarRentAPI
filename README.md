@@ -1,8 +1,8 @@
-## Wypożyczalnia Samochodów API
+# Car Rental API
 
-Wypożyczalnia Samochodów API to aplikacja API do zarządzania wypożyczalnią samochodów, zbudowana w architekturze Onion Architecture przy użyciu ASP.NET Core. Aplikacja korzysta z Identity, bazy danych SQL oraz JWT (JSON Web Token) do uwierzytelniania.
+Car Rental API is an application for managing a car rental service, built using Onion Architecture with ASP.NET Core. The application utilizes Identity, an SQL database, and JSON Web Token (JWT) for authentication.
 
-## Wymagane paczki NuGet
+## Required NuGet Packages
 - Microsoft.AspNetCore.Authentication.JwtBearer
 - Microsoft.AspNetCore.Identity.EntityFrameworkCore
 - Microsoft.AspNetCore.Identity.UI
@@ -10,169 +10,179 @@ Wypożyczalnia Samochodów API to aplikacja API do zarządzania wypożyczalnią 
 - Microsoft.EntityFrameworkCore.Design
 - Microsoft.EntityFrameworkCore.SqlServer
 - Microsoft.EntityFrameworkCore.Tools
-  Należy zainstalować je dla całego projektu
+  These packages need to be installed for the entire project.
 
-## Migracja bazy danych
-Aby przeprowadzić migrację bazy danych należy wybrać startup project jako ProjektBackend.Infrastrcture w konsoli Package manager console, a następnie wpisać add-migration Init oraz update-database. Należy również usunąć folder migrations jeśli istnieje.
+## Database Migration
+To perform a database migration, set the startup project to `ProjektBackend.Infrastructure` in the Package Manager Console and then run the following commands:
 
-## Łańcuch połączenia bazy danych
+```bash
+add-migration Init
+update-database
+```
+
+Make sure to delete the `Migrations` folder if it already exists.
+
+## Database Connection String
+
 ```json
-  {
-    "AllowedHosts": "*",
+{
+  "AllowedHosts": "*",
   "ConnectionStrings": {
     "DefaultConnection": "Server=.\\LOCALHOST;Database=Projekt;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=true"
   }
-  }
+}
 ```
-Należy zmienić nazwę w polu "Server" adekwatnie dla swojej maszyny np. localhost
 
-## Struktura Projektu
+Replace the `Server` field with the appropriate name for your machine, e.g., `localhost`.
 
-### Warstwa API
-Zawiera kontrolery do obsługi żądań HTTP.
+## Project Structure
 
-#### Kontrolery:
+### API Layer
+Contains controllers for handling HTTP requests.
+
+#### Controllers:
 
 **AdminController**
-- Tworzenie użytkownika z rolą Administratora.
+- Creates a user with the Administrator role.
 
 **AuthorizationController**
-- Rejestracja nowych użytkowników.
-- Logowanie użytkowników i generowanie tokenów JWT.
+- Registers new users.
+- Logs in users and generates JWT tokens.
 
 **CarController**
-- Pobieranie wszystkich samochodów.
-- Pobieranie szczegółów samochodu.
-- Tworzenie nowych samochodów (tylko Administrator).
-- Edytowanie samochodów (tylko Administrator).
-- Usuwanie samochodów.
+- Retrieves all cars.
+- Retrieves car details.
+- Creates new cars (Administrator only).
+- Edits cars (Administrator only).
+- Deletes cars.
 
 **CategoryController**
-- Pobieranie wszystkich kategorii samochodów.
-- Pobieranie szczegółów kategorii.
+- Retrieves all car categories.
+- Retrieves category details.
 
 **ClientController**
-- Pobieranie wszystkich klientów (Administrator, Użytkownik).
-- Pobieranie szczegółów klienta (Administrator, Użytkownik).
-- Tworzenie nowych klientów (Administrator).
+- Retrieves all clients (Administrator, User).
+- Retrieves client details (Administrator, User).
+- Creates new clients (Administrator).
 
 **OrderController**
-- Pobieranie wszystkich zamówień (Administrator, Użytkownik).
-- Pobieranie szczegółów zamówienia (Administrator, Użytkownik).
-- Tworzenie nowych zamówień (Administrator).
+- Retrieves all orders (Administrator, User).
+- Retrieves order details (Administrator, User).
+- Creates new orders (Administrator).
 
-### Warstwa Aplikacyjna
-Zawiera serwisy do obsługi logiki biznesowej.
+### Application Layer
+Contains services for business logic.
 
-#### Serwisy:
+#### Services:
 
 **CarService**
-- Obsługuje operacje związane z samochodami.
+- Handles operations related to cars.
 
 **CategoryService**
-- Obsługuje operacje związane z kategoriami.
+- Handles operations related to categories.
 
 **ClientService**
-- Obsługuje operacje związane z klientami.
+- Handles operations related to clients.
 
 **OrderService**
-- Obsługuje operacje związane z zamówieniami.
+- Handles operations related to orders.
 
-### Warstwa Domeny
-Zawiera encje oraz interfejsy.
+### Domain Layer
+Contains entities and interfaces.
 
-#### Encje:
+#### Entities:
 
 **Cars**
-- Id samochodu, marka, model, kategoria, powiązane zamówienia.
+- Car ID, brand, model, category, related orders.
 
 **Categories**
-- Id kategorii, nazwa kategorii, powiązane samochody.
+- Category ID, category name, related cars.
 
 **Clients**
-- Id klienta, imię, nazwisko, email, powiązane zamówienia.
+- Client ID, first name, last name, email, related orders.
 
 **Orders**
-- Id zamówienia, data zamówienia, id użytkownika, id klienta, id samochodu, daty odbioru i zwrotu.
+- Order ID, order date, user ID, client ID, car ID, pickup and return dates.
 
-  Encje(Entites) posiadają 4 encje:
+The entities consist of 4 main entities:
 - Categories
 - Cars
 - Clients
 - Orders
-Oraz 7 związków:
-- Categories - Cars: Jeden do wielu
-- Cars - Categories: Wiele do jednego
-- Cars - Orders: Jeden do wielu
-- Clients - Orders: Jeden do wielu
-- Orders - Users: Wiele do jednego
-- Orders - Clients: Wiele do jednego
-- Orders - Cars: Wiele do jednego
 
-### Warstwa Infrastruktury
-Zawiera implementacje repozytoriów oraz konfigurację bazy danych.
+And 7 relationships:
+- Categories - Cars: One-to-Many
+- Cars - Categories: Many-to-One
+- Cars - Orders: One-to-Many
+- Clients - Orders: One-to-Many
+- Orders - Users: Many-to-One
+- Orders - Clients: Many-to-One
+- Orders - Cars: Many-to-One
 
-#### Repozytoria:
+### Infrastructure Layer
+Contains repository implementations and database configuration.
+
+#### Repositories:
 
 **CarRepository**
-- Implementacja operacji CRUD dla samochodów.
+- Implements CRUD operations for cars.
 
 **CategoryRepository**
-- Implementacja operacji CRUD dla kategorii.
+- Implements CRUD operations for categories.
 
 **ClientRepository**
-- Implementacja operacji CRUD dla klientów.
+- Implements CRUD operations for clients.
 
 **OrderRepository**
-- Implementacja operacji CRUD dla zamówień.
+- Implements CRUD operations for orders.
 
 #### ApplicationDbContext
-Konfiguracja bazy danych i relacji między encjami.
+- Configures the database and relationships between entities.
 
-### Modele:
-Zawiera modele wykorzystywane w aplikacji.
+### Models
+Contains models used in the application.
 
 **ApplicationUser**
-- Rozszerza klasę IdentityUser o dodatkowe pola: FirstName, LastName.
+- Extends the `IdentityUser` class with additional fields: FirstName, LastName.
 
 **RegisterModel**
-- Model rejestracji użytkownika.
+- Model for user registration.
 
 **LoginModel**
-- Model logowania użytkownika.
+- Model for user login.
 
-## Instalacja
+## Installation
 
-1. Sklonuj repozytorium:
+1. Clone the repository:
     ```bash
-   https://github.com/dstudnicki/CarRentAPI.git
+    git clone https://github.com/dstudnicki/CarRentAPI.git
     ```
 
-2. Przejdź do katalogu projektu:
+2. Navigate to the project directory:
     ```bash
     cd ProjektBackend
     ```
 
-3. Zainstaluj zależności:
+3. Install dependencies:
     ```bash
     dotnet restore
     ```
 
-4. Skonfiguruj bazę danych w pliku `appsettings.json`.
+4. Configure the database in the `appsettings.json` file.
 
-5. Uruchom migracje:
+5. Run migrations:
     ```bash
     dotnet ef database update
     ```
 
-6. Uruchom aplikację:
+6. Run the application:
     ```bash
     dotnet run
     ```
 
-## Użycie
+## Usage
 
-### Rejestracja
+### Registration
 - Endpoint: `POST /Authorization/register`
 - Body:
   ```json
@@ -183,21 +193,21 @@ Zawiera modele wykorzystywane w aplikacji.
       "FirstName": "string",
       "LastName": "string"
   }
-`
+  ```
 
-  ### Logowanie
-- Endpoint: POST /Authorization/login
+### Login
+- Endpoint: `POST /Authorization/login`
 - Body:
   ```json
   {
       "Email": "string",
       "Password": "string"
   }
+  ```
 
-
-### Tworzenie nowego samochodu
-- Endpoint: Endpoint: POST /Car
-- Header: Authorization: Bearer {token}
+### Creating a New Car
+- Endpoint: `POST /Car`
+- Header: `Authorization: Bearer {token}`
 - Body:
   ```json
   {
@@ -207,14 +217,11 @@ Zawiera modele wykorzystywane w aplikacji.
   }
   ```
 
-   ### Pobieranie wszystkich samochodów
-- Endpoint: GET /Car
-- Header: Authorization: Bearer {token}
+### Retrieving All Cars
+- Endpoint: `GET /Car`
+- Header: `Authorization: Bearer {token}`
 
-### Testowanie
+## Testing
 
-Aby przetestować API, można użyć narzędzi takich jak Postman lub Swagger UI dostępny pod adresem /swagger.
+To test the API, you can use tools like Postman or Swagger UI, available at `/swagger`.
 
-  
-
-  
